@@ -9,5 +9,12 @@ public class LCATest {
 		fail("Not yet implemented");
 	}
 
+	
+	@Test
+	public void testNodeConstructor(){
+		
+		Node temp = new Node(1);
+		assertNotNull("Testing Node constructor: ", temp);
+	}
 }
 
