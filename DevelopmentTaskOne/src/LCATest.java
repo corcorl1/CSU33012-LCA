@@ -20,7 +20,9 @@ public class LCATest {
 	@Test 
 	public void testEmptyTree(){
 		LCA isTreeEmpty = new LCA();
-		assertEquals("LCA is empty: ",-1,isTreeEmpty.findLCA(0, 0));
+		assertNull("Find LCA when tree is empty: ",isTreeEmpty.findLCA(1, 2));
+		assertEquals("Find LCA when tree is empty: ", null,isTreeEmpty.findLCA(1, 2));
+
 	}
 }
 
