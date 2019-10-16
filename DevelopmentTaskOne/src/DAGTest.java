@@ -3,11 +3,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class DAGTest {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	
  	
 	@Test
@@ -43,5 +38,30 @@ public class DAGTest {
 		assertEquals(adj, graph.adj(2).toString());
 	}
 
+	@Test
+	public void addEdgeTest() {
+		DAG edgeTest = new DAG(5);
+		edgeTest.addEdge(0, 1);
+		edgeTest.addEdge(-2, -5);
+		
+		assertEquals("Testing edge count is 1", 1, edgeTest.E());
+		
+		edgeTest.addEdge(1, 2);
+		
+		assertEquals("Testing edge count is 2", 2, edgeTest.E());
+		
+	}
+	
+	@Test
+	public void inDegreeTest(){
+		DAG graph = new DAG(5);
+		assertEquals("", -1, graph.indegree(-3));
+	}
+	
+	@Test
+	public void outDegreeTest(){
+		DAG graph = new DAG(5);
+		assertEquals("", -1, graph.outdegree(8));	
+	}
 
 }
