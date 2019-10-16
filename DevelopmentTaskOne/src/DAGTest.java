@@ -70,4 +70,17 @@ public class DAGTest {
 		DAG VTest = new DAG(6);
 		assertEquals(6, VTest.V());
 	}
+	
+	@Test
+	public void testE(){
+		
+		DAG graph = new DAG(5);
+		
+		graph.addEdge(1, 3);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 4);
+		graph.addEdge(4, 1);
+		
+		assertEquals(4, graph.E());
+	}
 }
