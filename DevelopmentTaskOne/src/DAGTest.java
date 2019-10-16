@@ -64,5 +64,10 @@ public class DAGTest {
 		assertEquals("", -1, graph.outdegree(8));	
 	}
 
-	//
+	@Test 
+	public void testV()
+	{
+		DAG VTest = new DAG(6);
+		assertEquals(6, VTest.V());
+	}
 }
