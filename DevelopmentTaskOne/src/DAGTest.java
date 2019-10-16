@@ -83,4 +83,22 @@ public class DAGTest {
 		
 		assertEquals(4, graph.E());
 	}
+	
+	@Test
+	public void cycleTest(){
+		DAG isCyclic = new DAG(20);
+		isCyclic.addEdge(0, 1);
+		isCyclic.addEdge(1, 2);
+		isCyclic.addEdge(2, 0);
+		
+		isCyclic.findCycle(0);
+		assertTrue(isCyclic.hasCycle());
+		
+		DAG isAcyclic = new DAG(20);
+		isAcyclic.addEdge(0, 1);
+		isAcyclic.addEdge(1, 3);
+		isAcyclic.addEdge(2, 4);
+		isAcyclic.findCycle(0);
+		assertFalse(isAcyclic.hasCycle());
+	}
 }
