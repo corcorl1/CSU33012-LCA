@@ -102,4 +102,25 @@ public class DAGTest {
 		assertFalse(isAcyclic.hasCycle());
 	}
 	
+	@Test
+	public void testLCAForNonDAG()
+	{
+		DAG graph = new DAG(10);
+		
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 3);
+		graph.addEdge(3, 2);
+		graph.addEdge(2, 0);
+		graph.addEdge(2, 4);
+		
+		assertEquals(-1, graph.findLCA(3, 2));
+		assertEquals(-1, graph.findLCA(2, 4));
+		assertEquals(-1, graph.findLCA(1, 3));
+		assertEquals(-1, graph.findLCA(0, 3));
+		assertEquals(-1, graph.findLCA(1, 2));
+		
+	}
+	
+
+	
 }
