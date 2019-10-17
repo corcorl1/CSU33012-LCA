@@ -129,4 +129,70 @@ public class DAG
 		}
 		stack[v] = false;
 	}
+	
+	 public int findLCA(int v, int w){
+			findCycle(0);
+			if(hasCycle){
+				return -1;
+			}
+			DAG opposite = reverse();
+			ArrayList<Integer> firstArray = opposite.BFS(v);
+			ArrayList<Integer> secondArray = opposite.BFS(w);
+			ArrayList<Integer> ancestorsInCommon = new ArrayList<Integer>();
+			boolean found = false;
+			for(int i = 0; i<firstArray.size(); i++){
+				for(int t = 0; t<secondArray.size(); t++){		
+					if(firstArray.get(i)==secondArray.get(t)){
+						ancestorsInCommon.add(firstArray.get(i));
+						}
+				}
+			}
+			
+			if(found)
+				return ancestorsInCommon.get(0);
+			else
+				return -1;
+		}
+	 
+	 
+	 public DAG reverse() {
+	        DAG reverse = new DAG(V); 
+	        for (int array1 = 0; array1 < V; array1++) {
+	            for (int array2 : adj(array1)) {
+	                reverse.addEdge(array2, array1); 
+	            }
+	        }
+	        return reverse;
+	    }
+	 
+	 public ArrayList<Integer> BFS(int s)
+	    {
+	        boolean visited[] = new boolean[V];
+	 
+	        LinkedList<Integer> queue = new LinkedList<Integer>();
+	        ArrayList<Integer> order= new ArrayList<Integer>();
+	 
+	        visited[s]=true;
+	        queue.add(s);
+	        
+	 
+	        while (queue.size() != 0)
+	        {
+	            s = queue.poll();           
+	            order.add(s);
+	            Iterator<Integer> i = adj[s].listIterator();
+	            while (i.hasNext())
+	            {
+	                int n = i.next();
+	                if (!visited[n])
+	                {
+	                    visited[n] = true;
+	                    queue.add(n);
+	                }
+	            }
+	        }
+	        
+	        return order;
+	        
+	    }
 }
