@@ -35,7 +35,6 @@ public class DAG
 		}
 	}
 	
-	//Returns current vertex
 	public int V()
 	{
 		return V;
@@ -46,7 +45,6 @@ public class DAG
 		return E;
 	}
 	
-	//Adds directed edge from v to w
 	public void addEdge(int v, int w)
 	{
 		if((validateVertex(v) > 0) && (validateVertex(w) > 0))
@@ -73,7 +71,6 @@ public class DAG
 		}
 	}
 	
-	//Returns number of directed edges to vertex v
 	public int indegree(int v)
 	{
 		if(validateVertex(v) > 0)
@@ -84,10 +81,10 @@ public class DAG
 		{
 			return -1;
 		}
+
 		
 	}
 	
-	//Returns number of directed edges from vertex v
 	public int outdegree(int v)
 	{
 		if(validateVertex(v) > 0)
@@ -98,6 +95,7 @@ public class DAG
 		{
 			return -1;
 		}
+		
 	}
 
 	public Iterable<Integer> adj(int v)
@@ -131,25 +129,39 @@ public class DAG
 	}
 	
 	 public int findLCA(int v, int w){
-			findCycle(0);
-			if(hasCycle){
+
+		 findCycle(0);
+			if(hasCycle)
+			{
 				return -1;
 			}
-			DAG opposite = reverse();
-			ArrayList<Integer> firstArray = opposite.BFS(v);
-			ArrayList<Integer> secondArray = opposite.BFS(w);
-			ArrayList<Integer> ancestorsInCommon = new ArrayList<Integer>();
+			if(validateVertex(v)<0||validateVertex(v)<0)
+			{
+				return -1;
+			}
+			if(E==0)
+			{
+				return -1;
+			}
+
+			DAG backwards = reverse();
+			ArrayList<Integer> arr1 = backwards.BFS(v);
+			ArrayList<Integer> arr2 = backwards.BFS(w);
+			ArrayList<Integer> commonAncestors = new ArrayList<Integer>();
 			boolean found = false;
-			for(int i = 0; i<firstArray.size(); i++){
-				for(int t = 0; t<secondArray.size(); t++){		
-					if(firstArray.get(i)==secondArray.get(t)){
-						ancestorsInCommon.add(firstArray.get(i));
-						}
+			for(int i = 0; i<arr1.size(); i++)
+			{
+				for(int t = 0; t<arr2.size(); t++)
+				{		
+					if(arr1.get(i)==arr2.get(t))
+					{
+						commonAncestors.add(arr1.get(i));	
+						found = true;
+					}
 				}
 			}
-			
 			if(found)
-				return ancestorsInCommon.get(0);
+				return commonAncestors.get(0);
 			else
 				return -1;
 		}

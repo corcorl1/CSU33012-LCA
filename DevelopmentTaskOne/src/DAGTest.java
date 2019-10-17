@@ -121,6 +121,28 @@ public class DAGTest {
 		
 	}
 	
+	@Test
+	public void testLCA(){
+		DAG lcaTest = new DAG(10);
 
+		lcaTest.addEdge(0, 1);
+		lcaTest.addEdge(1, 2);
+		lcaTest.addEdge(1, 3);
+		lcaTest.addEdge(2, 5);
+		lcaTest.addEdge(3, 4);
+		lcaTest.addEdge(4, 6);
+		lcaTest.addEdge(5, 6);
+		lcaTest.addEdge(6, 8);
+		lcaTest.addEdge(5, 7);
+		lcaTest.addEdge(7, 8);
+		lcaTest.addEdge(8, 9);
+		
+		assertEquals("4 and 5", 1, lcaTest.findLCA(5, 4));
+		assertEquals("7 and 8", 7, lcaTest.findLCA(8, 7));
+		assertEquals("6 and 8", 6, lcaTest.findLCA(6, 8));
+		assertEquals("Special case where both parameters are same vertex", 2, lcaTest.findLCA(2,2));
 	
+
+	}
+
 }
