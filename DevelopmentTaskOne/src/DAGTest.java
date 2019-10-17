@@ -142,7 +142,27 @@ public class DAGTest {
 		assertEquals("6 and 8", 6, lcaTest.findLCA(6, 8));
 		assertEquals("Special case where both parameters are same vertex", 2, lcaTest.findLCA(2,2));
 	
-
 	}
+	
+	@Test
+	public void testLCAForNoCommonAncestors(){
+		DAG noComAnc = new DAG(11);
+		
+		noComAnc.addEdge(0, 1);
+		noComAnc.addEdge(0, 2);
+		noComAnc.addEdge(1, 2);
+		noComAnc.addEdge(2, 3);
+		noComAnc.addEdge(3, 4);
+		noComAnc.addEdge(1, 5);
+		noComAnc.addEdge(3, 5);
+		
+		assertEquals("when there is no LCA", 0, noComAnc.findLCA(3, 1));
+		assertEquals("", 2, noComAnc.findLCA(3, 2));
+		assertEquals("", 3, noComAnc.findLCA(4, 5));
+		
+		assertEquals("when one node doesn't exist", -1, noComAnc.findLCA(7, 3));
+	}
+	
+	
 
 }
